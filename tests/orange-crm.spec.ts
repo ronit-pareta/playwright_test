@@ -1,5 +1,6 @@
 import { expect, Expect,test } from "@playwright/test";
 import exp from "constants";
+import path from "path";
 
 test.beforeEach('navigate to login page',async ({page})=>{
     await page.goto('https://naveenautomationlabs.com/opencart/index.php?route=common/home');
@@ -33,6 +34,7 @@ test('add HP Laptop',async({page})=>{
     await page.getByRole('button',{name:'Add to Cart'}).click();
     const success = page.locator('//div[contains(text(),"Success: You have added ")]');
     await expect(success).toContainText('Success: You have added ');
+    await page.screenshot({path:'success.png'});
 });
 test.afterEach('clean up',async({page})=>{
 await page.waitForTimeout(1000);
