@@ -1,4 +1,4 @@
-import { expect, Expect,test } from "@playwright/test";
+import { expect,test } from "@playwright/test";
 import exp from "constants";
 import path from "path";
 
@@ -6,11 +6,13 @@ test.beforeEach('navigate to login page',async ({page})=>{
     await page.goto('https://naveenautomationlabs.com/opencart/index.php?route=common/home');
     await expect(page).toHaveTitle('Your Store');
     const myAcc = page.locator('//a[@title="My Account"]');
+    //await expect(myAcc).to
     await myAcc.click();
     await page.getByRole('link', { name: 'Login' }).click();
     await page.getByRole('textbox', { name: 'E-Mail Address' }).fill('xyz121@gmail.com');
     await page.getByRole('textbox', { name: 'Password' }).fill('123456');
     await page.getByRole('button', { name: 'Login' }).click();
+    
 });
 
 test('search desktop',async({page})=>{
